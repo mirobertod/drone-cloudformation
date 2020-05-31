@@ -2,11 +2,15 @@
 kind: pipeline
 name: default
 
+services:
+  - docker
+
 steps:
   - name: build-image
-    image: plugins/docker
-    settings:
-      repo: ci
+    image: docker
+    commands:
+      - docker images
+      - docker build -t ci .
 
   - name: test
     image: ci
