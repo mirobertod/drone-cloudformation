@@ -5,7 +5,7 @@ name: default
 steps:
   - name: test
     image: debian
-    batch:
+    settings:
       - stackname: my-database-stack
         template: templates/db.yml
         params:
