@@ -4,9 +4,12 @@ name: default
 
 steps:
   - name: build-image
-    image: debian
+    image: docker
     commands:
       - docker build -t ci:1 ./
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
 
   - name: test
     image: ci:1
