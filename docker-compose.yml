@@ -1,0 +1,7 @@
+version: "2.0"
+services:
+  drone-cloudformation:
+    build: .
+    volumes:
+      - .:/go/src/github.com/mirobertod/drone-cloudformation
+      - ~/.aws:/root/.aws
