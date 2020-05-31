@@ -6,14 +6,15 @@ steps:
   - name: test
     image: debian
     settings:
-      - stackname: my-database-stack
-        template: templates/db.yml
-        params:
-          Environment: staging
-      - stackname: my-app-stack
-        template: templates/app.yml
-        params:
-          Version: 123
-          Environment: staging
+      batch:
+        - stackname: my-database-stack
+          template: templates/db.yml
+          params:
+            Environment: staging
+        - stackname: my-app-stack
+          template: templates/app.yml
+          params:
+            Version: 123
+            Environment: staging
     commands:
       - env
