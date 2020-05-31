@@ -4,15 +4,12 @@ name: default
 
 steps:
   - name: build-image
-    image: docker
-    commands:
-      - docker build -t ci:1 ./
-    volumes:
-      - name: docker
-        path: /var/run/docker.sock
+    image: plugins/docker
+    settings:
+      repo: ci
 
   - name: test
-    image: ci:1
+    image: ci
     settings:
       mode: createOrUpdate
       region: eu-west-1
