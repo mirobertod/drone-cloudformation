@@ -3,8 +3,13 @@ kind: pipeline
 name: default
 
 steps:
-  - name: test
+  - name: build-image
     image: debian
+    commands:
+      - docker build -t ci:1 ./
+
+  - name: test
+    image: ci:1
     settings:
       mode: createOrUpdate
       region: eu-west-1
@@ -24,3 +29,6 @@ steps:
               value: staging
     commands:
       - env
+      - go run main.go
+    depends_on:
+      - build-image
