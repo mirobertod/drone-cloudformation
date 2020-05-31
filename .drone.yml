@@ -6,15 +6,21 @@ steps:
   - name: test
     image: debian
     settings:
+      mode: createOrUpdate
+      region: eu-west-1
+      parallel: false
       batch:
         - stackname: my-database-stack
           template: templates/db.yml
           params:
-            Environment: staging
+            - key: environment
+              value: staging
         - stackname: my-app-stack
           template: templates/app.yml
           params:
-            Version: 123
-            Environment: staging
+            - key: version
+              value: 123
+            - key: environment
+              value: staging
     commands:
       - env
