@@ -3,8 +3,14 @@ kind: pipeline
 name: default
 
 steps:
+  - name: build-image
+    image: docker:dind
+    commands:
+      - docker images
+      - docker build -t ci .
+
   - name: test
-    image: golang:1.14
+    image: ci
     settings:
       mode: createOrUpdate
       region: eu-west-1
@@ -25,3 +31,5 @@ steps:
     commands:
       - env
       - go run main.go
+    depends_on:
+      - build-image
