@@ -24,4 +24,6 @@ steps:
               value: staging
     commands:
       - env
+      - pwd
+      - ls -l
       - go run main.go
