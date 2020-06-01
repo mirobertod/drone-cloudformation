@@ -3,14 +3,8 @@ kind: pipeline
 name: default
 
 steps:
-  - name: build-image
-    image: docker:dind
-    commands:
-      - docker images
-      - docker build -t ci .
-
   - name: test
-    image: ci
+    image: mirobertod/drone-cloudformation:0.1
     settings:
       mode: createOrUpdate
       region: eu-west-1
@@ -31,5 +25,3 @@ steps:
     commands:
       - env
       - go run main.go
-    depends_on:
-      - build-image
