@@ -23,9 +23,9 @@ steps:
           template: templates/app.yml
           params:
             - key: version
-              value: 123
+              value: "123"
             - key: environment
               value: staging
     commands:
       - env
-      - go run main.go
+      - go run .
